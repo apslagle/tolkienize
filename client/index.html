@@ -7,11 +7,10 @@
   <body>
     <h1>MiddlEarthify</h1>
     <div ng-view>
-      <form name='submitForm' ng-submit="addEpic()" novalidate>
-      <input name='link'
-        ng-model="link.url"
+      <form name='submitForm' ng-submit="createEpic(hero)" novalidate>
+      <input name='hero'
+        ng-model="hero.name"
         placeholder="Enter your name here"/>
-
       <button type="submit" value="Submit" >
         add
       </button>

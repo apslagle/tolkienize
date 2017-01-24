@@ -30,6 +30,28 @@ app.use(express.static(__dirname + '/../client'));
 app.get('/', function(req, res) {
   res.render('index');
 });
+app.post('/epic', function(req, res) {
+  var hero = req.body;
+  console.log("My hero! " + hero.name + hero.story);
+  if (hero) {
+    Epic.Epic.create({
+      name: hero.name,
+      story: hero.story
+    });
+    console.log('hero logged in database')
+  }
+  res.send();
+});
+app.get('/epic', function(req, res) {
+  Epic.Epic.find({}, function(err, data){
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.json(data);
+    }
+  });
+});
 
 app.listen(port, function() {
       console.log('node-express-mongoose listening on ' + port);
