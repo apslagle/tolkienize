@@ -19,11 +19,11 @@ db.once('open', function() {
 
 app.engine('html', require('ejs').renderFile);
 
-app.set('views', __dirname + '/../Client');
+app.set('views', __dirname + '/../client');
 app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../Client'));
+app.use(express.static(__dirname + '/../client'));
 
 
 
