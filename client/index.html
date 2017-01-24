@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <title>MiddlEarthify</title>
   </head>
+  <style type="text/css">
+    .singleEpic {
+      padding: 10px
+    }
+  </style>
   <body>
     <h1>MiddlEarthify</h1>
     <div ng-controller='AppController'>
@@ -11,12 +16,13 @@
       <input name='hero'
         ng-model="hero.name"
         placeholder="Enter your name here"/>
+      <input name='gender' ng-model="hero.gender" placeholder="He: 0, She: 1, Ze: 2"/>
       <button type="submit" value="Submit" >
         Submit
       </button>
     </form>
     <div ng-repeat='epic in data.epics' class='epic'>
-      <div class='info'>
+      <div class='singleEpic'>
         <div class='title'>The Tale of {{epic.name}}</div>
         <div class='epic'>{{epic.story}}</div>
       </div>

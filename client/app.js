@@ -35,7 +35,7 @@ angular.module('middlearthify', ['ngRoute'])
     $scope.createEpic = function() {
       console.log('createEpic' + $scope.hero)
       newEpic($scope.hero);
-      $scope.hero="";
+      $scope.hero={};
     }
     var getAll = function () {
       return $http({

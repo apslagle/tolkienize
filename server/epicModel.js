@@ -17,7 +17,11 @@ var createNewEpic = function(hero) {
   function rInd (length) {
     return Math.floor(Math.random() * length);
   };
+  console.log(hero.gender);
+  var gen = {"1": 1, "2": 2, "3": 3};
+  var gender = gen[hero.gender];
   var name = hero.name;
+
   var proNomCap = ['He', 'She', 'Ze'];
   var proObCap = ['Him', 'Her', 'Zir'];
   var proDeCap = ['His', 'Her', 'Zir'];
@@ -35,7 +39,8 @@ var createNewEpic = function(hero) {
   var flaVerMov = ['raced', 'meandered', 'wandered', 'roamed', 'strode'];
   var flaVerFit = ['pounded', 'demeaned', 'spied out', 'sought out', 'conquered'];
   var flaVerWin = ['feasted', 'gloated', 'lived in peace', 'boasted of ' + proDeCap[gender] + ' exploits', 'lived as a hero'];
-  var flaAdj = ['pivotal', 'small', 'crucial', 'public', '']
+  var peopAdj = ['wealthy', 'lowly', 'ambitious', 'lordly', 'uncaring', 'doting', 'aimless'];
+  var flaAdj = ['pivotal', 'small', 'crucial', 'public', 'decisive']
   var flaInd = rInd(flaVerMov.length);
   var race = rInd(racSiCap.length);
   var gender = hero.gender || 1; //This will need to be changed**************
@@ -46,22 +51,28 @@ var createNewEpic = function(hero) {
   else {
     enemy = rInd(racSiCap.length -1);
   }
+  var home = places[race][rInd(3)];
+  var begSents = [
+    function() {
+      return name + " was a " + racSiNc[race] + " among " + racPlNc[race] + ". Born in " + places[race][rInd(3)] + " to " + peopAdj[rInd(peopAdj.length)] + " parents, " proDeNc[gender] + " life really began when the " + racPlNc[enemy] + "  invaded. ";
+    }
+  ]
   var movSents = [
     function() {
-      return 'When the call for warriors came, ' + name + ' ' + flaVerMov[flaInd] + ' past ' + places[rInd(4)][rInd(3)] + " to take part in the battle. ";
+      return 'Then the call for warriors came. ' + name + ' ' + flaVerMov[flaInd] + ' past ' + places[rInd(4)][rInd(3)] + " to take part in the battle. ";
     }
   ];
   var fitSents = [
     function() {
-      return 'When the fighting began, ' + proNomNc[gender] + ' played a ' + flaAdj[flaInd] + 'role when ' + proNomNc[gender] + ' ' + flaVerFit[flaInd] + ' a troop of ' + entroops[enemy][rInd(3)] + '. ';
+      return 'When the fighting began, ' + proNomNc[gender] + ' played a ' + flaAdj[flaInd] + ' role when ' + proNomNc[gender] + ' ' + flaVerFit[flaInd] + ' a troop of ' + entroops[enemy][rInd(3)] + '. ';
     }
   ];
   var winSents = [
     function () {
-      return '';
+      return 'The victory was brief, but it allowed ' + name + " to return to " + proDeNc[gender] + " home in " + home + ", where " + proNomNc[gender] + " " + flaVerWin[flaInd];
     }
   ];
-  return movSents[rInd(movSents.length)]() + fitSents[rInd(fitSents.length)]();
+  return begSents[rInd(begSents.length)] + movSents[rInd(movSents.length)]() + fitSents[rInd(fitSents.length)]() + winSents[rInd(winSents.length)]();
 };
 module.exports = {
   Epic: Epic,
