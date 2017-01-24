@@ -9,7 +9,7 @@ angular.module('middlearthify', ['ngRoute'])
       });
   })
   .controller('AppController', function($scope, $http) {
-    var hero = {};
+    $scope.hero = {};
     $scope.data = {};
     $scope.data.epics = [
       {
@@ -20,14 +20,41 @@ angular.module('middlearthify', ['ngRoute'])
         name: 'Gandalf',
         story: "He is not to be messed with."
       }
-    ]
-    var createEpic = function(hero) {
+    ];
+    var newEpic = function(hero) {
+      console.log('newEpic')
       return $http({
         method: 'POST',
         url: '/epic',
-        data: {hero: hero}
+        data: hero
       }).then(function(res) {
         return res.status;
+        initializeLinks();
       });
     };
-  });
+    $scope.createEpic = function() {
+      console.log('createEpic' + $scope.hero)
+      newEpic($scope.hero);
+      $scope.hero="";
+    }
+    var getAll = function () {
+      return $http({
+        method: 'GET',
+        url: '/epic'
+      })
+      .then(function (resp) {
+        return resp.data;
+      });
+    };
+    var initializeLinks = function () {
+    getAll()
+      .then(function (epics) {
+        $scope.data.epics = epics.reverse();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    };
+    initializeLinks();
+    setInterval(initializeLinks, 3000);
+});

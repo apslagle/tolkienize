@@ -36,7 +36,7 @@ app.post('/epic', function(req, res) {
   if (hero) {
     Epic.Epic.create({
       name: hero.name,
-      story: hero.story
+      story: Epic.createNewEpic(hero)
     });
     console.log('hero logged in database')
   }

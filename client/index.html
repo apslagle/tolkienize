@@ -6,22 +6,23 @@
   </head>
   <body>
     <h1>MiddlEarthify</h1>
-    <div ng-view>
-      <form name='submitForm' ng-submit="createEpic(hero)" novalidate>
+    <div ng-controller='AppController'>
+      <form name='submitForm' ng-submit="createEpic()">
       <input name='hero'
         ng-model="hero.name"
         placeholder="Enter your name here"/>
       <button type="submit" value="Submit" >
-        add
+        Submit
       </button>
     </form>
-    <div ng-repeat= 'epic in data.epics' class='epic'>
+    <div ng-repeat='epic in data.epics' class='epic'>
       <div class='info'>
-        <div class='title'>The Tale of {{epic.hero}}</div>
-        <div class='epic'>{{link.url}}</div>
+        <div class='title'>The Tale of {{epic.name}}</div>
+        <div class='epic'>{{epic.story}}</div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
