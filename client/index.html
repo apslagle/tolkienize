@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app='middlearthify'>
+  <head>
+    <meta charset="utf-8" />
+    <title>MiddlEarthify</title>
+  </head>
+  <body>
+    <h1>MiddlEarthify</h1>
+    <div ng-view>
+      <form name='submitForm' ng-submit="addEpic()" novalidate>
+      <input name='link'
+        ng-model="link.url"
+        placeholder="Enter your name here"/>
+
+      <button type="submit" value="Submit" >
+        add
+      </button>
+    </form>
+    <div ng-repeat= 'epic in data.epics' class='epic'>
+      <div class='info'>
+        <div class='title'>The Tale of {{epic.hero}}</div>
+        <div class='epic'>{{link.url}}</div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
