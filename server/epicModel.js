@@ -43,7 +43,7 @@ var createNewEpic = function(hero) {
   var leaders = [["Aragorn", "Gandalf", "Eowyn"], ["Legolas", "Arwen", "Galadriel"], ["Gimli", "Thorin", "Balin"], ["Sauron", "the Witch King", "Saruman"]];
   var diedIn = ["peace", "obscurity", "poverty", "comfort", "hope", "ignomy"];
   var diedOf = ["old age", "a boating accident", "lung cancer", "a sneak attack", "a shellfish allergy", "a strange aversion to water", "an infection", "an old wound", "an angry hobbit", "lead poisoning", "a lifestyle disease", "backbone.js"];
-  var regret = ["that " + proNomNc[gender] + " had but one life to give", "nothing", "only that " +proNomNc[gender]+ "had died with so much when so many had so little", "everything", "only the sunrise", "little", "that " + proNomNc[gender] + " had not done more for " +proDeNc[gender] + " friends"]
+  var regret = ["that " + proNomNc[gender] + " had but one life to give", "nothing", "only that " +proNomNc[gender]+ " had died with so much when so many had so little", "everything", "only the sunrise", "little", "that " + proNomNc[gender] + " had not done more for " +proDeNc[gender] + " friends"]
   var flaInd = rInd(flaVerMov.length);
   var race = rInd(racSiCap.length);
   var enemy;
