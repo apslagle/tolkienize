@@ -44,6 +44,7 @@ var createNewEpic = function(hero) {
   var diedIn = ["peace", "obscurity", "poverty", "comfort", "hope", "ignomy"];
   var diedOf = ["old age", "a boating accident", "lung cancer", "a sneak attack", "a shellfish allergy", "a strange aversion to water", "an infection", "an old wound", "an angry hobbit", "lead poisoning", "a lifestyle disease", "backbone.js"];
   var regret = ["that " + proNomNc[gender] + " had but one life to give", "nothing", "only that " +proNomNc[gender]+ " had died with so much when so many had so little", "everything", "only the sunrise", "little", "that " + proNomNc[gender] + " had not done more for " +proDeNc[gender] + " friends"]
+  var attitude = ["calm", "panicked", "furious", "content", "at peace", "nearly wetting " + proDeNc[gender] + 'self'];
   var flaInd = rInd(flaVerMov.length);
   var race = rInd(racSiCap.length);
   var enemy;
@@ -57,12 +58,21 @@ var createNewEpic = function(hero) {
     var meetAct = ["played checkers", "got stoned", "went into battle", "had a heartfelt conversation", "had a fling", ("visited " + places[race][rInd(3)]), "dueled for sport", "dueled to the death"]
   var begSents = [
     function() {
-      return name + " was a " + racSiNc[race] + " among " + racPlNc[race] + ". Born in " + places[race][rInd(3)] + " to " + peopAdj[rInd(peopAdj.length)] + " parents, " + proDeNc[gender] + " life really began when the " + racPlNc[enemy] + "  invaded. ";
+      return name + " was a " + racSiNc[race] + " among " + racPlNc[race] + ". Born in " + home + " to " + peopAdj[rInd(peopAdj.length)] + " parents, " + proDeNc[gender] + " life really began when the " + racPlNc[enemy] + "  invaded. ";
+    },
+    function() {
+      return name + " was considered to be very " + peopAdj[rInd(peopAdj.length)] + " in " + home + ", where " + proNomNc[gender] + " was raised. "
+    },
+    function () {
+      return "Few were looking for a hero to come from " + home + " at that time, but the " + racPlNc[race] + " got " + name + " all the same. It must have been more than fortune, for the " + racPlNc[enemy] + " invaded when " + proNomNc[gender] + " was in the fullness of youth. "
     }
   ]
   var movSents = [
     function() {
       return 'Then the call for warriors came. ' + name + ' ' + flaVerMov[flaInd] + ' past ' + places[rInd(4)][rInd(3)] + " to take part in the battle. ";
+    },
+    function() {
+      return "The " + racPlNc[race] +" took the fight to the enemy, and " + name + " was " + attitude[rInd(attitude.length)] + " as " + proNomNc[gender] + " went into battle. ";
     }
   ];
   var fitSents = [
