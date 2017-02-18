@@ -5,17 +5,28 @@ var bodyParser= require('body-parser');
 var path= require('path');
 //var html = require('html');
 var app = express();
-var MONGODB_URI = "mongodb://heroku_30tmj194:rdg630t7ic9me2judc5bgd92p6@ds053176.mlab.com:53176/heroku_30tmj194";
 var port = process.env.PORT || 3021;
 
 var localUri = 'mongodb://localhost/middlearthify';
 
+
+
+
+
+var MONGODB_URI = "mongodb://heroku_30tmj194:rdg630t7ic9me2judc5bgd92p6@ds053176.mlab.com:53176/heroku_30tmj194";
 mongoose.connect(MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Mongodb connection open');
 });
+
+
+
+
+
+
+
 
 app.engine('html', require('ejs').renderFile);
 

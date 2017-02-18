@@ -14,8 +14,11 @@ var EpicSchema = new mongoose.Schema({
 var Epic = mongoose.model('Epic', EpicSchema);
 
 var createNewEpic = function(hero) {
-  function rInd (length) {
-    return Math.floor(Math.random() * length);
+  function rInd (target) {
+    if (typeof(target) !== 'number') {
+      target = target.length;
+    }
+    return Math.floor(Math.random() * target);
   };
   console.log(hero.gender);
   var name = hero.name;
@@ -36,7 +39,7 @@ var createNewEpic = function(hero) {
   var places = [['Minas Tirith', 'Bree', 'Dale'],['Rivendell', 'the Grey Havens', 'Lothlorien'],[ 'the Misty Mountains', 'Erebor', 'the Iron Hills'],['Mount Doom', 'Minas Morgul', 'the Mines of Moria'], 'Fangorn Forest']
   var flaVerMov = ['raced', 'meandered', 'wandered', 'roamed', 'strode'];
   var flaVerFit = ['pounded', 'demeaned', 'spied out', 'sought out', 'conquered'];
-  var flaVerWin = ['feasted', 'gloated', 'lived in peace', 'boasted of ' + proDeCap[gender] + ' exploits', 'lived as a hero'];
+  var flaVerWin = ['feasted', 'gloated', 'lived in peace', 'boasted of ' + proDeNc[gender] + ' exploits', 'lived as a hero'];
   var peopAdj = ['wealthy', 'lowly', 'ambitious', 'lordly', 'uncaring', 'doting', 'aimless'];
   var flaAdj = ['pivotal', 'small', 'crucial', 'public', 'decisive']
   var meetAdj = ["pinnacle", "low point", "turning point", "capper", "culmination"]
@@ -78,21 +81,33 @@ var createNewEpic = function(hero) {
   var fitSents = [
     function() {
       return 'When the fighting began, ' + proNomNc[gender] + ' played a ' + flaAdj[flaInd] + ' role when ' + proNomNc[gender] + ' ' + flaVerFit[flaInd] + ' a troop of ' + entroops[enemy][rInd(3)] + '. ';
+    },
+    function () {
+      return proNomCap[gender] + ' was nearly ' + flaVerFit[flaInd] + ' in the combat at ' + places[rInd(4)][rInd(3)] + ', but was saved by ' + leaders[race][rInd(3)] + '. ';
     }
   ];
   var winSents = [
     function () {
       return 'The victory was brief, but it allowed ' + name + " to return to " + proDeNc[gender] + " home in " + home + ", where " + proNomNc[gender] + " " + flaVerWin[flaInd] + ". ";
+    },
+    function () {
+      return 'Though many brave warriors were lost in the battle, the ' +racPlNc[race] + ' gained a brief reprieve from their victory. ' + name + ' returned to ' + home + ', and ' +flaVerWin[flaInd] + '. ';
     }
   ];
   var meetSents = [
     function(){
       return "The " + meetAdj[rInd(meetAdj.length)] + " of " + proDeNc[gender] + " life surely came when " + proNomNc[gender] + " met " + leaders[race][rInd(3)] + ", and they " + meetAct[rInd(meetAct.length)] + " together. "
+    },
+    function() {
+      return "In later travels, " + proNomNc[gender] + " met " + leaders[race][rInd(3)] + ' at ' + places[race][rInd(3)] + ', a moment ' + proNomNc[gender] + ' considered the ' + meetAdj[rInd(meetAdj)] + ' of ' + proDeNc[gender] + ' life. ';
     }
   ];
   var endSents = [
     function(){
       return "At the end of " + proDeNc[gender] + " life, " +name + " moved to " + places[race][rInd(3)] + " where " + proNomNc[gender] + " died in " + diedIn[rInd(diedIn.length)] + " of " + diedOf[rInd(diedOf.length)] + ". " + proNomCap[gender] + " regretted " + regret[rInd(regret.length)] + ", and so passed away from Middle Earth."
+    },
+    function() {
+      return 'Many years later, ' + name + ' died of ' + diedOf[rInd(diedOf)] + ', passing away from Middle Earth in ' + diedIn[rInd(diedIn)] + '.'
     }
   ]
   return begSents[rInd(begSents.length)]() + movSents[rInd(movSents.length)]() + fitSents[rInd(fitSents.length)]() + winSents[rInd(winSents.length)]() + meetSents[rInd(meetSents.length)]() + endSents[rInd(endSents.length)]();
